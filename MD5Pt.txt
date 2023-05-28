@@ -1,0 +1,23 @@
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+public class MD5Example 
+{
+    public static void main(String[] args) {
+        String text = "Hello, World!";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(text.getBytes());
+            byte[] digest = md.digest();
+            BigInteger number = new BigInteger(1, digest);
+            String md5 = number.toString(16);
+            while (md5.length() < 32) {
+                md5 = "0" + md5;
+            }
+            System.out.println("MD5 Digest: " + md5);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+}
